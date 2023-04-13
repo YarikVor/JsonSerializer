@@ -6,4 +6,9 @@ public class JsonSerializer
     {
         return "";
     }
+
+    public TEntity Deserialize<TEntity>() where TEntity: class
+    {
+        return default;
+    }
 }
