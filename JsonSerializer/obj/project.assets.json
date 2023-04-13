@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Yarik\\RiderProjects\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj",
+      "projectUniqueName": "G:\\Project\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj",
       "projectName": "JsonSerializer",
-      "projectPath": "C:\\Users\\Yarik\\RiderProjects\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj",
+      "projectPath": "G:\\Project\\JsonSerializer\\JsonSerializer\\JsonSerializer.csproj",
       "packagesPath": "C:\\Users\\Yarik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Yarik\\RiderProjects\\JsonSerializer\\JsonSerializer\\obj\\",
+      "outputPath": "G:\\Project\\JsonSerializer\\JsonSerializer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "G:\\Мої програми\\MVS\\Shared\\NuGetPackages"

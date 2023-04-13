@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JhyDjhmweEiu1X08OFLjfF9DN7/wp1nwryoTsjM8pGMuS+om7gbVI6PbRt8kII93LRskzFP28sNb+W5KRrOi8Q==",
+  "dgSpecHash": "eMj9EOVIrYVQSUPjqwh6yH5y3WbajgFCE+6lNDj9gza4j4/8JxHOxNOJIyNsyGIC2H3ex9XiAfqnlIFSMtDk4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Yarik\\RiderProjects\\JsonSerializer\\JsonSerializer.Tests\\JsonSerializer.Tests.csproj",
+  "projectFilePath": "G:\\Project\\JsonSerializer\\JsonSerializer.Tests\\JsonSerializer.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Yarik\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Yarik\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",
