@@ -1,31 +1,19 @@
 using System.Collections;
-using System.Runtime.Serialization;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Nodes;
 
 public abstract class Node : IEnumerable<Node>
 {
-    public abstract bool IsMultiNodes { get; }
+    public abstract NodeType NodeType { get; }
 
-    private List<Node> body = new List<Node>();
+    public Range Range;
 
-    public Range range;
-
-    public IEnumerator<Node> GetEnumerator()
-    {
-        return body.GetEnumerator();
-    }
+    public abstract IEnumerator<Node> GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
     }
 
-    public void Push(Node node)
-    {
-        if (!IsMultiNodes && body.Any())
-            throw new JsonDisableMultiNodeException();
-
-        body.Add(node);
-    }
+    public abstract void Push(Node node);
 }

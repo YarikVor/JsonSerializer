@@ -1,6 +1,5 @@
 namespace JsonSerializer;
 
-public class ObjectNode : Node
+public class ObjectNode : MultiNode
 {
-    public override bool IsMultiNodes => true;
 }

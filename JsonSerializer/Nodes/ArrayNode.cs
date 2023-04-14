@@ -1,6 +1,8 @@
+using JsonSerializer.Nodes;
+
 namespace JsonSerializer;
 
-public class ArrayNode : Node
+public class ArrayNode : MultiNode
 {
-    public override bool IsMultiNodes => true;
+    
 }
