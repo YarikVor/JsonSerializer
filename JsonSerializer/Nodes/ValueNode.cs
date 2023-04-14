@@ -1,6 +1,11 @@
+using Newtonsoft.Json;
+
 namespace JsonSerializer;
 
-public class ValueNode : Node
+public abstract class ValueNode : Node
 {
-    public string Value;
+    public override bool IsMultiNodes => false;
+
+    [JsonProperty]
+    public string Value { get; set; }
 }

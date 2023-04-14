@@ -1,12 +1,15 @@
 using System.Collections;
+using System.Runtime.Serialization;
 
 namespace JsonSerializer;
 
 public abstract class Node : IEnumerable<Node>
 {
-    private List<Node> body;
+    public abstract bool IsMultiNodes { get; }
 
-    public Range position;
+    private List<Node> body = new List<Node>();
+
+    public Range range;
 
     public IEnumerator<Node> GetEnumerator()
     {
@@ -18,8 +21,11 @@ public abstract class Node : IEnumerable<Node>
         return GetEnumerator();
     }
 
-    public void Add(Node node)
+    public void Push(Node node)
     {
+        if (!IsMultiNodes && body.Any())
+            throw new JsonDisableMultiNodeException();
+
         body.Add(node);
     }
 }
