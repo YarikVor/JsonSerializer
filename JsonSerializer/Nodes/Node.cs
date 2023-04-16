@@ -6,8 +6,6 @@ public abstract class Node : IEnumerable<Node>
 {
     public abstract NodeType NodeType { get; }
 
-    public Range Range;
-
     public abstract IEnumerator<Node> GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -15,5 +13,5 @@ public abstract class Node : IEnumerable<Node>
         return GetEnumerator();
     }
 
-    public abstract void Push(Node node);
+    public abstract void Add(Node node);
 }

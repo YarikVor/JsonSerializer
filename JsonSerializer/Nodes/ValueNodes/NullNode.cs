@@ -2,8 +2,7 @@ namespace JsonSerializer;
 
 public class NullNode : ValueNode
 {
-    public NullNode()
+    public NullNode(): base("null")
     {
-        this.Value = "null";
     }
 }

@@ -1,10 +1,18 @@
 using JsonSerializer.Nodes;
-using Newtonsoft.Json;
 
 namespace JsonSerializer;
 
 public abstract class ValueNode : Node
 {
+    public ValueNode()
+    {
+    }
+
+    public ValueNode(string value) : this()
+    {
+        Value = value;
+    }
+
     public string Value { get; set; }
 
     public sealed override NodeType NodeType => NodeType.ValueType;
@@ -14,7 +22,7 @@ public abstract class ValueNode : Node
         yield break;
     }
 
-    public sealed override void Push(Node node)
+    public sealed override void Add(Node node)
     {
         throw new NotImplementedException();
     }
