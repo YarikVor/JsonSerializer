@@ -1,6 +1,6 @@
 namespace JsonSerializer.Attributes;
 
-[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Property)]
 public class JsonPropertyNameAttribute : Attribute
 {
     public readonly string Name;

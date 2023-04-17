@@ -1,12 +1,12 @@
 namespace JsonSerializer.Attributes;
 
-[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Property)]
 public class JsonIgnoreAttribute : Attribute
 {
     [Flags]
     public enum IgnorePropertyWhen
     {
-        None = 0,
+        Never = 0,
         NullRef = 1,
         Default = 2,
         NullRefAndDefault = NullRef | Default,
@@ -14,10 +14,10 @@ public class JsonIgnoreAttribute : Attribute
         Empty = NullRef | Default | EmptyArray,
         Always = 8
     }
-    
-    public readonly IgnoreWhen IgnoreWhen;
-    
-    public JsonIgnoreAttribute(IgnorePropertyWhen ignoreWhen = IgnorePropertyWhen.Empty)
+
+    public readonly IgnorePropertyWhen IgnoreWhen;
+
+    public JsonIgnoreAttribute(IgnorePropertyWhen ignoreWhen = IgnorePropertyWhen.Never)
     {
         IgnoreWhen = ignoreWhen;
     }
