@@ -1,8 +1,8 @@
 namespace JsonSerializer;
 
-public class JsonInvalidEndingException : JsonException
+public class JsonEndException : JsonException
 {
-    public JsonInvalidEndingException(string? message) : base(message)
+    public JsonEndException(string? message) : base(message)
     {
     }
 }

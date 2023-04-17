@@ -1,6 +1,6 @@
 namespace JsonSerializer;
 
-public class JsonInvalidBoolException : JsonInvalidConvertException
+public class JsonInvalidBoolException : JsonInvalidValueConvertException
 {
     public JsonInvalidBoolException(string? message) : base(message)
     {
