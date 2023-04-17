@@ -2,7 +2,7 @@ using System.Collections;
 
 namespace JsonSerializer;
 
-public class BinaryEnumerable : IReadOnlyCollection<char>, IEnumerator<char>
+public class BinaryEnumerable : IEnumerator<char>
 {
     private readonly BinaryReader _binaryReader;
     private char _current = char.MaxValue;
@@ -24,8 +24,8 @@ public class BinaryEnumerable : IReadOnlyCollection<char>, IEnumerator<char>
 
         if (value == -1)
         {
-            if(_current == char.MaxValue)
-                throw new JsonEndFileException("");
+            if (_current == char.MaxValue)
+                throw new JsonEndException("");
 
             return false;
         }
@@ -44,7 +44,7 @@ public class BinaryEnumerable : IReadOnlyCollection<char>, IEnumerator<char>
         get
         {
             if (_current == char.MaxValue)
-                throw new JsonEndFileException("");
+                throw new JsonEndException("");
 
             return _current;
         }
@@ -67,11 +67,4 @@ public class BinaryEnumerable : IReadOnlyCollection<char>, IEnumerator<char>
     {
         return this;
     }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public int Count => (int)_binaryReader.BaseStream.Length;
 }
