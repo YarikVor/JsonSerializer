@@ -5,7 +5,6 @@ namespace JsonSerializer;
 public abstract class MultiNode : Node
 {
     private readonly List<Node> _nodes = new();
-    public override NodeType NodeType => NodeType.MultiNode;
 
     public override IEnumerator<Node> GetEnumerator()
     {

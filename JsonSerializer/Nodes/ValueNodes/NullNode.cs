@@ -2,7 +2,7 @@ namespace JsonSerializer;
 
 public class NullNode : ValueNode
 {
-    public NullNode(): base("null")
+    public NullNode() : base(JsonConstants.Null)
     {
     }
 }

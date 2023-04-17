@@ -1,7 +1,9 @@
+using JsonSerializer.Attributes;
 using JsonSerializer.Nodes;
 
 namespace JsonSerializer;
 
+[JsonNodeConverter(typeof(JsonKeyNodeConverter))]
 public class KeyNode : Node
 {
     public string Name;
@@ -27,8 +29,6 @@ public class KeyNode : Node
         Name = name;
         Node = node;
     }
-
-    public override NodeType NodeType => NodeType.OneNode;
 
 
     public override IEnumerator<Node> GetEnumerator()
