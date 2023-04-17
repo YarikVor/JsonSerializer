@@ -1,4 +1,6 @@
-namespace JsonSerializer;
+using JsonSerializer.Abstractions;
+
+namespace JsonSerializer.Extensions;
 
 public static class SerializationExtension
 {

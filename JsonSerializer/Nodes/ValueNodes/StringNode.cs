@@ -1,6 +1,7 @@
 using JsonSerializer.Attributes;
+using JsonSerializer.Converters.Nodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Nodes.ValueNodes;
 
 [JsonNodeConverter(typeof(JsonStringNodeConverter))]
 public class StringNode : ValueNode

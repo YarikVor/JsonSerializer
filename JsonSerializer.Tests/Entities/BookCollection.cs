@@ -1,6 +1,6 @@
 using JsonSerializer.Attributes;
 
-namespace JsonSerializer.Tests;
+namespace JsonSerializer.Tests.Entities;
 
 internal class BookCollection
 {
@@ -8,5 +8,5 @@ internal class BookCollection
     public int Id { get; set; }
 
     [JsonIgnore(JsonIgnoreAttribute.IgnorePropertyWhen.Empty)]
-    public string[] Books { get; set; }
+    public string[] Books { get; set; } = null!;
 }

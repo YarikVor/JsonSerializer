@@ -1,6 +1,4 @@
-using JsonSerializer.Nodes;
-
-namespace JsonSerializer;
+namespace JsonSerializer.Nodes.MultiNodes;
 
 public abstract class MultiNode : Node
 {

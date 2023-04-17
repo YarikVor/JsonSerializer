@@ -1,6 +1,6 @@
 using JsonSerializer.Attributes;
 
-namespace JsonSerializer.Tests;
+namespace JsonSerializer.Tests.Entities;
 
 internal class Person
 {

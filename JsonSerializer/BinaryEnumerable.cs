@@ -1,6 +1,11 @@
+
+
 using System.Collections;
+using JsonSerializer.Exeptions;
 
 namespace JsonSerializer;
+
+
 
 public class BinaryEnumerable : IEnumerator<char>
 {

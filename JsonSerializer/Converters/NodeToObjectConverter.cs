@@ -1,8 +1,13 @@
 using System.Collections;
+using JsonSerializer.Abstractions;
 using JsonSerializer.Attributes;
+using JsonSerializer.Exeptions;
+using JsonSerializer.Extensions;
 using JsonSerializer.Nodes;
+using JsonSerializer.Nodes.MultiNodes;
+using JsonSerializer.Nodes.ValueNodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Converters;
 
 public class NodeToObjectConverter :
     ITypedConversion<Node>
@@ -21,7 +26,7 @@ public class NodeToObjectConverter :
         if (type.IsArray) // T[]
         {
             var listType = JsonConstants.ListType; // List<>
-            var elementType = type.GetElementType(); //  T[] -> T
+            var elementType = type.GetElementType()!; //  T[] -> T
             var genericType = listType.MakeGenericType(elementType); // List<> + T = List<T>
             var list = (IList)Activator.CreateInstance(genericType)!;
             foreach (var child in (ArrayNode)node)
@@ -53,10 +58,8 @@ public class NodeToObjectConverter :
 
             foreach (var child in ((ObjectNode)node).Select(e => (KeyNode)e))
             {
-                var valueNode = new StringNode(child.Name);
-                var key = ToObject(valueNode, keyElementType);
+                var key = child.Name;
                 var value = ToObject(child.First(), valueElementType);
-
                 list.Add(key, value);
             }
 
@@ -66,8 +69,7 @@ public class NodeToObjectConverter :
         var underlyingType = Nullable.GetUnderlyingType(type);
         if (underlyingType != null)
         {
-            if (node is NullNode nullNode) return null;
-            return ToObject(node, underlyingType);
+            return node is NullNode ? null : ToObject(node, underlyingType);
         }
 
 
@@ -94,7 +96,7 @@ public class NodeToObjectConverter :
             foreach (var property in properties.Where(p =>
                          p.CanWrite && p.GetIgnoreWhenJson() != JsonIgnoreAttribute.IgnorePropertyWhen.Always))
             {
-                var keyNode = objectNode.FirstOrDefault(node => ((KeyNode)node).Name == property.Name);
+                var keyNode = objectNode.FirstOrDefault(n => ((KeyNode)n).Name == property.Name);
 
                 if (keyNode != null)
                     property.SetValue(obj, ToObject(keyNode.First(), property.PropertyType));

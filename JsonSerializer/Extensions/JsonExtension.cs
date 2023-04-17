@@ -2,7 +2,7 @@ using System.Collections;
 using System.Reflection;
 using JsonSerializer.Attributes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Extensions;
 
 public static class JsonExtension
 {

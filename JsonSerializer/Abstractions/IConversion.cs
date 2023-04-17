@@ -1,6 +1,6 @@
-namespace JsonSerializer;
+namespace JsonSerializer.Abstractions;
 
-public interface IConversion<in TSourse, out TEntity>
+public interface IConversion<in TSource, out TEntity>
 {
-    TEntity ConvertTo(TSourse sourse);
+    TEntity ConvertTo(TSource source);
 }

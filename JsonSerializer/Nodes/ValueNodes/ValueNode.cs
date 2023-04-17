@@ -1,7 +1,7 @@
 using JsonSerializer.Attributes;
-using JsonSerializer.Nodes;
+using JsonSerializer.Converters.Nodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Nodes.ValueNodes;
 
 [JsonNodeConverter(typeof(JsonValueNodeConverter))]
 public abstract class ValueNode : Node
@@ -15,7 +15,7 @@ public abstract class ValueNode : Node
         Value = value;
     }
 
-    public string Value { get; set; }
+    public string Value { get; set; } = null!;
 
     public sealed override IEnumerator<Node> GetEnumerator()
     {

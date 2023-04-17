@@ -1,7 +1,10 @@
+using JsonSerializer.Converters;
 using JsonSerializer.Nodes;
+using JsonSerializer.Tests.Entities;
 using Newtonsoft.Json;
+using JsonException = JsonSerializer.Exeptions.JsonException;
 
-namespace JsonSerializer.Tests;
+namespace JsonSerializer.Tests.Tests;
 
 public partial class JsonSerializerTests
 {

@@ -1,8 +1,11 @@
 using System.Text;
+using JsonSerializer.Abstractions;
 using JsonSerializer.Attributes;
+using JsonSerializer.Converters.Nodes;
+using JsonSerializer.Exeptions;
 using JsonSerializer.Nodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Converters;
 
 public class NodeToJsonConverter :
     IConversion<Node, string>,
@@ -10,7 +13,7 @@ public class NodeToJsonConverter :
 {
     private readonly Dictionary<Type, IJsonNodeConverter> _converters = new();
 
-    private StringBuilder sb;
+    private StringBuilder _sb = null!;
 
     string IConversion<Node, string>.ConvertTo(Node obj)
     {
@@ -21,7 +24,7 @@ public class NodeToJsonConverter :
     {
         if (TryGetJsonNodeConverter(node.GetType(), out var converter))
         {
-            converter.Write(node, sb, this);
+            converter.Write(node, _sb, this);
             return;
         }
 
@@ -30,16 +33,16 @@ public class NodeToJsonConverter :
 
     public string ToJson(Node node)
     {
-        sb = new StringBuilder(128);
+        _sb = new StringBuilder(128);
 
         SerializeEverything(node);
 
-        return sb.ToString();
+        return _sb.ToString();
     }
 
     private bool TryGetJsonNodeConverter(Type type, out IJsonNodeConverter converter)
     {
-        if (_converters.TryGetValue(type, out converter)) return true;
+        if (_converters.TryGetValue(type, out converter!)) return true;
         var attribute = Attribute.GetCustomAttribute(type, typeof(JsonNodeConverterAttribute));
         if (attribute is not JsonNodeConverterAttribute jsonNodeConverterAttribute) return false;
         var converterType = jsonNodeConverterAttribute.ConverterType;

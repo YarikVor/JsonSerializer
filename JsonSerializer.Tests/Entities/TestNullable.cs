@@ -1,4 +1,4 @@
-namespace JsonSerializer.Tests;
+namespace JsonSerializer.Tests.Entities;
 
 public class TestNullable<T> where T : struct
 {

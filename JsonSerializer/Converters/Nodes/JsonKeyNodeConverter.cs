@@ -1,6 +1,7 @@
 using System.Text;
+using JsonSerializer.Nodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Converters.Nodes;
 
 internal class JsonKeyNodeConverter : IJsonNodeConverter<KeyNode>
 {

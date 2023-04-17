@@ -1,7 +1,11 @@
 ﻿using System.Collections;
+using JsonSerializer.Abstractions;
+using JsonSerializer.Extensions;
 using JsonSerializer.Nodes;
+using JsonSerializer.Nodes.MultiNodes;
+using JsonSerializer.Nodes.ValueNodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Converters;
 
 public class ObjectToNodeConverter :
     IConversion<object, Node>
@@ -80,13 +84,13 @@ public class ObjectToNodeConverter :
         var valueType = value.GetType();
 
         if (valueType.IsPrimitive) return ReadAsPrimitive(value);
-        if (value is string str) return ReadString(value);
+        if (value is string) return ReadString(value);
 
         var underlyingType = Nullable.GetUnderlyingType(valueType);
         if (underlyingType != null)
         {
             var underlyingPropertyInfo = valueType.GetProperty(nameof(Nullable<bool>.Value));
-            var underlyingValue = underlyingPropertyInfo.GetValue(value);
+            var underlyingValue = underlyingPropertyInfo!.GetValue(value);
             return GetNode(underlyingValue);
         }
 
@@ -97,7 +101,7 @@ public class ObjectToNodeConverter :
             return node;
         }
         
-        if (value is IEnumerable enumerable)
+        if (value is IEnumerable)
         {
             var node = new ArrayNode();
             ReadElementAsArray(value, node);
@@ -141,12 +145,12 @@ public class ObjectToNodeConverter :
         return new StringNode(obj.ToString()!);
     }
 
-    public NullNode ReadAsNull()
+    private NullNode ReadAsNull()
     {
         return new NullNode();
     }
 
-    public ValueNode ReadAsPrimitive(object obj)
+    private ValueNode ReadAsPrimitive(object obj)
     {
         if (obj is bool)
             return ReadBool(obj);

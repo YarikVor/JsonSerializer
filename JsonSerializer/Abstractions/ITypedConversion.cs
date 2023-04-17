@@ -1,6 +1,6 @@
-namespace JsonSerializer;
+namespace JsonSerializer.Abstractions;
 
-public interface ITypedConversion<in TSourse>
+public interface ITypedConversion<in TSource>
 {
-    object? ConvertToObject(TSourse obj, Type type);
+    object? ConvertToObject(TSource obj, Type type);
 }

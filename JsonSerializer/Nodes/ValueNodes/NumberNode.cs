@@ -1,4 +1,4 @@
-namespace JsonSerializer;
+namespace JsonSerializer.Nodes.ValueNodes;
 
 public class NumberNode : ValueNode
 {

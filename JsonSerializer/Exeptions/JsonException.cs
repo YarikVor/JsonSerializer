@@ -1,4 +1,4 @@
-namespace JsonSerializer;
+namespace JsonSerializer.Exeptions;
 
 public class JsonException : Exception
 {

@@ -1,7 +1,7 @@
-namespace JsonSerializer;
+namespace JsonSerializer.Abstractions;
 
-public interface ISerialization<TSourse, TEntity>
+public interface ISerialization<TSource, TEntity>
 {
-    TEntity Serialize(TSourse sourse);
-    TSourse Deserialize(TEntity result, Type type);
+    TEntity Serialize(TSource source);
+    TSource Deserialize(TEntity result, Type type);
 }

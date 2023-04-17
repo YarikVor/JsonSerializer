@@ -1,20 +1,24 @@
 using System.Text;
+using JsonSerializer.Abstractions;
+using JsonSerializer.Exeptions;
 using JsonSerializer.Nodes;
+using JsonSerializer.Nodes.MultiNodes;
+using JsonSerializer.Nodes.ValueNodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Converters;
 
 public class JsonToNodeConverter :
     IConversion<string, Node>,
     IConversion<Stream, Node>
 {
-    public Node ConvertTo(Stream sourse)
+    public Node ConvertTo(Stream source)
     {
-        return Read(sourse);
+        return Read(source);
     }
 
-    public Node ConvertTo(string sourse)
+    public Node ConvertTo(string source)
     {
-        return Read(sourse);
+        return Read(source);
     }
 
 
@@ -96,7 +100,7 @@ public class JsonToNodeConverter :
         }
 
         if (_stack.Count == 1)
-            return Root.First();
+            return _root.First();
 
         throw new JsonEndException("");
     }
@@ -104,8 +108,8 @@ public class JsonToNodeConverter :
     #region private fields
 
     private readonly Stack<Node> _stack = new(16);
-    private Node Root = new KeyNode();
-    private BinaryEnumerable _binaryEnumerable;
+    private Node _root = null!;
+    private BinaryEnumerable _binaryEnumerable = null!;
 
     #endregion
 
@@ -158,7 +162,7 @@ public class JsonToNodeConverter :
         _binaryEnumerable = new BinaryEnumerable(stream);
 
         Push(new ObjectNode());
-        Push(Root = new KeyNode());
+        Push(_root = new KeyNode());
         return ReadFromStream();
     }
 
@@ -235,13 +239,13 @@ public class JsonToNodeConverter :
 
             switch (symbol)
             {
-                case '-' when isPositiveNumber && !isExponentialFormat:
+                case '-' when (isPositiveNumber && !isExponentialFormat):
                     isPositiveNumber = false;
                     break;
-                case '-' when isPositiveExponential && isExponentialFormat:
+                case '-' when (isPositiveExponential && isExponentialFormat):
                     isPositiveExponential = false;
                     break;
-                case '.' when !isFloatingPoint && !isExponentialFormat:
+                case '.' when (!isFloatingPoint && !isExponentialFormat):
                     isFloatingPoint = true;
                     break;
                 case 'e' or 'E' when !isExponentialFormat:
@@ -292,9 +296,7 @@ public class JsonToNodeConverter :
                 throw new JsonConverterNotSupportedException("It isn't bool!");
         }
 
-        var boolNode = new BoolNode(readString);
-
-        return boolNode;
+        return new BoolNode(readString);
     }
 
     #endregion

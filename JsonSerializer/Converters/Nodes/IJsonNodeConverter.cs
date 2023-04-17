@@ -1,7 +1,7 @@
 using System.Text;
 using JsonSerializer.Nodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Converters.Nodes;
 
 internal interface IJsonNodeConverter<in TNode> : IJsonNodeConverter where TNode : Node
 {

@@ -1,3 +1,5 @@
+using JsonSerializer.Abstractions;
+using JsonSerializer.Converters;
 using JsonSerializer.Nodes;
 
 namespace JsonSerializer;
@@ -23,13 +25,13 @@ public class JsonSerializer :
         return _nodeToJsonConverter.ConvertTo(nodes);
     }
 
-    public object? Deserialize(string obj, Type type)
+    public object Deserialize(string obj, Type type)
     {
         var nodes = _jsonToNodeConverter.ConvertTo(obj);
-        return _nodeToObjectConverter.ConvertToObject(nodes, type);
+        return _nodeToObjectConverter.ConvertToObject(nodes, type)!;
     }
 
-    object? ITypedConversion<string>.ConvertToObject(string obj, Type type)
+    object ITypedConversion<string>.ConvertToObject(string obj, Type type)
     {
         return Deserialize(obj, type);
     }

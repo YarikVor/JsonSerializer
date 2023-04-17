@@ -1,4 +1,7 @@
-namespace JsonSerializer.Tests;
+using JsonSerializer.Extensions;
+using JsonSerializer.Tests.Entities;
+
+namespace JsonSerializer.Tests.Tests;
 
 public class JsonDeserializationTests
 {

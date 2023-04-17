@@ -1,14 +1,15 @@
 using JsonSerializer.Attributes;
-using JsonSerializer.Nodes;
+using JsonSerializer.Converters.Nodes;
+using JsonSerializer.Exeptions;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Nodes;
 
 [JsonNodeConverter(typeof(JsonKeyNodeConverter))]
 public class KeyNode : Node
 {
-    public string Name;
+    public string Name = null!;
 
-    private Node Node;
+    private Node? _node;
 
     public KeyNode()
     {
@@ -21,26 +22,26 @@ public class KeyNode : Node
 
     public KeyNode(Node node)
     {
-        Node = node;
+        _node = node;
     }
 
     public KeyNode(string name, Node node)
     {
         Name = name;
-        Node = node;
+        _node = node;
     }
 
 
     public override IEnumerator<Node> GetEnumerator()
     {
-        yield return Node;
+        yield return _node!;
     }
 
     public override void Add(Node node)
     {
-        if (Node != null)
+        if (_node != null)
             throw new JsonDisableMultiNodeException();
 
-        Node = node;
+        _node = node;
     }
 }

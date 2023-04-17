@@ -1,6 +1,7 @@
 using System.Text;
+using JsonSerializer.Nodes.MultiNodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Converters.Nodes;
 
 internal abstract class JsonMultiNodeConverter<T> : IJsonNodeConverter<T> where T : MultiNode
 {

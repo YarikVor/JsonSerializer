@@ -1,6 +1,6 @@
 using JsonSerializer.Nodes;
 
-namespace JsonSerializer;
+namespace JsonSerializer.Converters;
 
 public interface INodeToJsonConverter
 {

@@ -1,6 +1,6 @@
 using Xunit.Abstractions;
 
-namespace JsonSerializer.Tests;
+namespace JsonSerializer.Tests.Tests;
 
 public class JsonSerializationTests
 {
