@@ -1,1 +1,4 @@
-
+apiRules:
+- include:
+  uid: JsonSerializer
+- exclude:
